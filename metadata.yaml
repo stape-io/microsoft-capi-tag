@@ -1,0 +1,5 @@
+homepage: 'https://stape.io/'
+documentation: 'https://github.com/stape-io/microsoft-capi-tag'
+versions:
+  - sha: b5786291edaf3edb77c58ffd87fe9323fc3d5ae4
+    changeNotes: Initial release.
