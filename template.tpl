@@ -1297,10 +1297,10 @@ function sendIdSyncFromBrowser(data, mappedData) {
   const anonymousId = event.userData.anonymousId;
   if (!accountCustomerId || !anonymousId) {
     log({
-      Name: 'MicrosoftUETCAPI',
+      Name: 'MicrosoftCAPI',
       Type: 'Message',
       TraceId: traceId,
-      EventName: 'Client-Side ID Sync',
+      EventName: 'ClientSideIDSync',
       Message: 'Client-Side ID Sync request was not sent.',
       Reason: 'One or more required parameters are missing: accountCustomerId or anonymousId'
     });
@@ -1339,10 +1339,10 @@ function sendRequest(data, mappedData) {
   const requestOptions = generateRequestOptions(data);
 
   log({
-    Name: 'MicrosoftUETCAPI',
+    Name: 'MicrosoftCAPI',
     Type: 'Request',
     TraceId: traceId,
-    EventName: eventNameForLogs(mappedData),
+    EventName: mappedData.data[0].eventType,
     RequestMethod: requestOptions.method,
     RequestUrl: requestUrl,
     RequestBody: mappedData
@@ -1352,10 +1352,10 @@ function sendRequest(data, mappedData) {
     requestUrl,
     (statusCode, headers, body) => {
       log({
-        Name: 'MicrosoftUETCAPI',
+        Name: 'MicrosoftCAPI',
         Type: 'Response',
         TraceId: traceId,
-        EventName: eventNameForLogs(mappedData),
+        EventName: mappedData.data[0].eventType,
         ResponseStatusCode: statusCode,
         ResponseHeaders: headers,
         ResponseBody: body
@@ -1454,11 +1454,6 @@ function isConsentGivenOrNotRequired(data, eventData) {
   if (eventData.consent_state) return !!eventData.consent_state.ad_storage;
   const xGaGcs = eventData['x-ga-gcs'] || ''; // x-ga-gcs is a string like "G110"
   return xGaGcs[2] === '1';
-}
-
-function eventNameForLogs(mappedData) {
-  const event = mappedData.data[0];
-  return event.eventType + (event.eventName ? ':' + event.eventName : '');
 }
 
 function log(rawDataToLog) {
