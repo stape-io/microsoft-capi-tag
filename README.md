@@ -57,6 +57,10 @@ These parameters provide specific details about the user's action.
 -   **Auto-mapping**: If enabled, the tag automatically populates many of these fields from a standard GA4 or e-commerce data structure in your event data (e.g., `Revenue Value` is mapped from `value`).
 -   **Page Type**: Categorizes the page where the event occurred (e.g., `product`, `cart`, `purchase`). This is auto-mapped when inheriting from a GA4 client.
 
+## Intellisense for GTM Server-Side
+
+To enable Intellisense and enhance your template development workflow, you can follow the instructions provided at the [Stape.io Google Tag Manager APIs Intellisense repository](https://github.com/stape-io/google-tag-manager-apis-intellisense). This will provide auto-completion and type-checking for the Sandboxed JS APIs within your code editor.
+
 ## Open Source
 
 The **Microsoft UET Conversion API Tag for GTM Server-Side** is developed and maintained by the [Stape Team](https://stape.io/) under the Apache 2.0 license.
