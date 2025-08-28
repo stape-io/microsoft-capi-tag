@@ -91,7 +91,7 @@ function setClickIdCookie(data, clickId) {
 function getAnonymousId(eventData) {
   const commonCookie = eventData.commonCookie || {};
 
-  const anonymousIdFromServerCookie = getCookieValues('uet_vid')[0] || commonCookie._uet_vid;
+  const anonymousIdFromServerCookie = getCookieValues('uet_vid')[0] || commonCookie.uet_vid;
   if (anonymousIdFromServerCookie) return anonymousIdFromServerCookie;
 
   const anonymousIdFromJSCookie = getCookieValues('_uetvid')[0] || commonCookie._uetvid;
