@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "Microsoft Ads UET Conversion API",
+  "displayName": "Microsoft Ads UET Conversion API by Stape",
   "categories": [
     "ADVERTISING",
     "MARKETING",
