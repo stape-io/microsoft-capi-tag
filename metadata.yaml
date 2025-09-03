@@ -1,6 +1,8 @@
 homepage: 'https://stape.io/'
 documentation: 'https://github.com/stape-io/microsoft-capi-tag'
 versions:
+  - sha: aec774838a98a65dbc848e6a9837fdc6978e91f9
+    changeNotes: Rename tag.
   - sha: 283a331880dd7ad332b9771732d1d39b15e3d555
     changeNotes: Improve Anonymous ID read from Common Cookie.
   - sha: 0c30effc78094335da8de61d96e2204e78061bec
