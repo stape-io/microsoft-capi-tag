@@ -200,7 +200,7 @@ function addUserData(data, eventData, event) {
 function addEventData(data, eventData, event) {
   const customData = {};
 
-  if (isUIFieldTrue(data.autoMapServerEventDataParameters)) {
+  if (isUIFieldTrue(data.autoMapEventParameters)) {
     let currencyFromItems;
     let valueFromItems;
     if (getType(eventData.items) === 'array' && eventData.items.length > 0) {
