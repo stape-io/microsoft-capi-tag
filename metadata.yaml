@@ -1,6 +1,8 @@
 homepage: 'https://stape.io/'
 documentation: 'https://github.com/stape-io/microsoft-capi-tag'
 versions:
+  - sha: 4a56e6fcb6cf5806b7fed2d6580bcf6417059de3
+    changeNotes: Fix typo in automapping variable on Event Data section.
   - sha: aec774838a98a65dbc848e6a9837fdc6978e91f9
     changeNotes: Rename tag.
   - sha: 283a331880dd7ad332b9771732d1d39b15e3d555
