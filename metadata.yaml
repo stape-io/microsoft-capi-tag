@@ -1,6 +1,8 @@
 homepage: 'https://stape.io/'
 documentation: 'https://github.com/stape-io/microsoft-capi-tag'
 versions:
+  - sha: 2b8e7aef89216b940254abe820ba9c8a7a6b104e
+    changeNotes: Add dataProvider field and extend Click ID and Anonymous ID automapping.
   - sha: 4a56e6fcb6cf5806b7fed2d6580bcf6417059de3
     changeNotes: Fix typo in automapping variable on Event Data section.
   - sha: aec774838a98a65dbc848e6a9837fdc6978e91f9
