@@ -1,5 +1,3 @@
-/// <reference path="./server-gtm-sandboxed-apis.d.ts" />
-
 const BigQuery = require('BigQuery');
 const encodeUriComponent = require('encodeUriComponent');
 const generateRandom = require('generateRandom');
@@ -24,16 +22,10 @@ const sha256Sync = require('sha256Sync');
 /*==============================================================================
 ==============================================================================*/
 
-const traceId = getRequestHeader('trace-id');
 const eventData = getAllEventData();
 const useOptimisticScenario = isUIFieldTrue(data.useOptimisticScenario);
 
-if (!isConsentGivenOrNotRequired(data, eventData)) {
-  return data.gtmOnSuccess();
-}
-
-const url = eventData.page_location || getRequestHeader('referer');
-if (url && url.lastIndexOf('https://gtm-msr.appspot.com/', 0) === 0) {
+if (shouldExitEarly(data, eventData)) {
   return data.gtmOnSuccess();
 }
 
@@ -53,7 +45,7 @@ if (useOptimisticScenario) {
 ==============================================================================*/
 
 function parseClickIdFromUrl(eventData) {
-  const url = eventData.page_location || getRequestHeader('referer');
+  const url = getUrl(eventData);
   if (!url) return;
 
   const urlSearchParams = parseUrl(url).searchParams;
@@ -66,10 +58,15 @@ function getClickId(eventData) {
   const clickIdFromUrl = parseClickIdFromUrl(eventData);
   if (clickIdFromUrl) return clickIdFromUrl;
 
-  const clickIdFromServerCookie = getCookieValues('uet_msclkid')[0] || commonCookie.uet_msclkid;
+  const clickIdFromServerCookie =
+    getCookieValues('uet_msclkid')[0] || commonCookie.uet_msclkid || eventData.uet_msclkid;
   if (clickIdFromServerCookie) return clickIdFromServerCookie;
 
-  const clickIdFromJSCookie = getCookieValues('_uetmsclkid')[0] || commonCookie._uetmsclkid;
+  const clickIdFromJSCookie =
+    getCookieValues('_uetmsclkid')[0] ||
+    commonCookie._uetmsclkid ||
+    eventData._uetmsclkid ||
+    eventData.uetmsclkid;
   if (clickIdFromJSCookie) return clickIdFromJSCookie.replace('_uet', '');
 }
 
@@ -91,10 +88,12 @@ function setClickIdCookie(data, clickId) {
 function getAnonymousId(eventData) {
   const commonCookie = eventData.commonCookie || {};
 
-  const anonymousIdFromServerCookie = getCookieValues('uet_vid')[0] || commonCookie.uet_vid;
+  const anonymousIdFromServerCookie =
+    getCookieValues('uet_vid')[0] || commonCookie.uet_vid || eventData.uet_vid;
   if (anonymousIdFromServerCookie) return anonymousIdFromServerCookie;
 
-  const anonymousIdFromJSCookie = getCookieValues('_uetvid')[0] || commonCookie._uetvid;
+  const anonymousIdFromJSCookie =
+    getCookieValues('_uetvid')[0] || commonCookie._uetvid || eventData._uetvid || eventData.uetvid;
   if (anonymousIdFromJSCookie) return anonymousIdFromJSCookie;
 
   if (isUIFieldTrue(data.setAnonymousIdCookie)) return generateUUID();
@@ -201,15 +200,26 @@ function addEventData(data, eventData, event) {
   const customData = {};
 
   if (isUIFieldTrue(data.autoMapEventParameters)) {
+    let items;
     let currencyFromItems;
     let valueFromItems;
-    if (getType(eventData.items) === 'array' && eventData.items.length > 0) {
+
+    if (getType(eventData.items) === 'array' && eventData.items.length) items = eventData.items;
+    else if (
+      getType(eventData.ecommerce) === 'object' &&
+      getType(eventData.ecommerce.items) === 'array' &&
+      eventData.ecommerce.items.length
+    ) {
+      items = eventData.ecommerce.items;
+    }
+
+    if (getType(items) === 'array' && items.length) {
       customData.items = [];
       customData.itemIds = [];
       valueFromItems = 0;
-      currencyFromItems = eventData.items[0].currency;
+      currencyFromItems = items[0].currency;
       const itemIdKey = data.itemIdKey ? data.itemIdKey : 'item_id';
-      eventData.items.forEach((i) => {
+      items.forEach((i) => {
         const item = {};
         if (i[itemIdKey]) item.id = makeString(i[itemIdKey]);
         if (i.item_name) item.name = makeString(i.item_name);
@@ -382,7 +392,8 @@ function mapEvent(data, eventData) {
     eventName: mapEventName(data, eventData)
   };
   const mappedData = {
-    data: [event]
+    data: [event],
+    dataProvider: 'stape-gtmss-1.0.0'
   };
 
   addServerEventData(data, eventData, event);
@@ -404,9 +415,8 @@ function sendIdSyncFromBrowser(data, mappedData) {
     log({
       Name: 'MicrosoftCAPI',
       Type: 'Message',
-      TraceId: traceId,
       EventName: 'ClientSideIDSync',
-      Message: 'Client-Side ID Sync request was not sent.',
+      Message: '🛑 [ERROR] Client-Side ID Sync request was not sent.',
       Reason: 'One or more required parameters are missing: accountCustomerId or anonymousId'
     });
 
@@ -446,7 +456,6 @@ function sendRequest(data, mappedData) {
   log({
     Name: 'MicrosoftCAPI',
     Type: 'Request',
-    TraceId: traceId,
     EventName: mappedData.data[0].eventType,
     RequestMethod: requestOptions.method,
     RequestUrl: requestUrl,
@@ -459,7 +468,6 @@ function sendRequest(data, mappedData) {
       log({
         Name: 'MicrosoftCAPI',
         Type: 'Response',
-        TraceId: traceId,
         EventName: mappedData.data[0].eventType,
         ResponseStatusCode: statusCode,
         ResponseHeaders: headers,
@@ -479,6 +487,19 @@ function sendRequest(data, mappedData) {
 /*==============================================================================
   Helpers
 ==============================================================================*/
+
+function shouldExitEarly(data, eventData) {
+  if (!isConsentGivenOrNotRequired(data, eventData)) return true;
+
+  const url = getUrl(eventData);
+  if (url && url.lastIndexOf('https://gtm-msr.appspot.com/', 0) === 0) return true;
+
+  return false;
+}
+
+function getUrl(eventData) {
+  return eventData.page_location || getRequestHeader('referer') || eventData.page_referrer;
+}
 
 function mergeObj(target, source) {
   for (const key in source) {
@@ -566,6 +587,8 @@ function log(rawDataToLog) {
   if (determinateIsLoggingEnabled()) logDestinationsHandlers.console = logConsole;
   if (determinateIsLoggingEnabledForBigQuery()) logDestinationsHandlers.bigQuery = logToBigQuery;
 
+  rawDataToLog.TraceId = getRequestHeader('trace-id');
+
   const keyMappings = {
     // No transformation for Console is needed.
     bigQuery: {
@@ -617,9 +640,7 @@ function logToBigQuery(dataToLog) {
     dataToLog[p] = JSON.stringify(dataToLog[p]);
   });
 
-  const bigquery =
-    getType(BigQuery) === 'function' ? BigQuery() /* Only during Unit Tests */ : BigQuery;
-  bigquery.insert(connectionInfo, [dataToLog], { ignoreUnknownValues: true });
+  BigQuery.insert(connectionInfo, [dataToLog], { ignoreUnknownValues: true });
 }
 
 function determinateIsLoggingEnabled() {

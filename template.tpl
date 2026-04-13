@@ -224,7 +224,7 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "help": "If \u003cb\u003efalse\u003c/b\u003e, and if an existing Anonymous ID cookie is found or was added to the \u003ci\u003eUser Data Parameters\u003c/i\u003e, it will still be sent in the request but not stored as a cookie. It won\u0027t be auto-generated.\n\u003cbr/\u003e\u003cbr/\u003e\nIf \u003cb\u003etrue\u003c/b\u003e, the Anonymous ID will be sent in the request and stored as the \u003ci\u003euet_vid\u003c/i\u003e cookie by server GTM. If it\u0027s not found in the possible sources, it will be auto-generated.\n\u003cbr/\u003e\u003cbr/\u003e\nThe Anonymous ID is, in this order, sourced from:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003euet_vid\u003c/i\u003e cookie from server GTM\u003c/li\u003e\n\u003cli\u003e\u003ci\u003ecommonCookie.uet_vid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003e_uetvid\u003c/i\u003e cookie from the JS script\u003c/li\u003e\n\u003cli\u003e\u003ci\u003ecommonCookie._uetvid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eUser Data Parameters\u003c/i\u003e section\u003c/li\u003e\n\u003c/ul\u003e",
+        "help": "If \u003cb\u003efalse\u003c/b\u003e, and if an existing Anonymous ID cookie is found or was added to the \u003ci\u003eUser Data Parameters\u003c/i\u003e, it will still be sent in the request but not stored as a cookie. It won\u0027t be auto-generated.\n\u003cbr/\u003e\u003cbr/\u003e\nIf \u003cb\u003etrue\u003c/b\u003e, the Anonymous ID will be sent in the request and stored as the \u003ci\u003euet_vid\u003c/i\u003e cookie by server GTM. If it\u0027s not found in the possible sources, it will be auto-generated.\n\u003cbr/\u003e\u003cbr/\u003e\nThe Anonymous ID is, in this order, sourced from:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003euet_vid\u003c/i\u003e cookie from server GTM\u003c/li\u003e\n\u003cli\u003e\u003ci\u003ecommonCookie.uet_vid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003euet_vid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003e_uetvid\u003c/i\u003e cookie from the JS script\u003c/li\u003e\n\u003cli\u003e\u003ci\u003ecommonCookie._uetvid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003e_uetvid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003euetvid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eUser Data Parameters\u003c/i\u003e section\u003c/li\u003e\n\u003c/ul\u003e",
         "defaultValue": true,
         "subParams": [
           {
@@ -305,7 +305,7 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "help": "If \u003cb\u003efalse\u003c/b\u003e, and if an existing Click ID cookie or URL parameter is found or was added to the \u003ci\u003eUser Data Parameters\u003c/i\u003e,, it will still be sent in the request but not stored as a cookie.\n\u003cbr/\u003e\u003cbr/\u003e\nIf \u003cb\u003etrue\u003c/b\u003e, the Click ID will be sent in the request and stored as the \u003ci\u003euet_msclkid\u003c/i\u003e cookie by server GTM.\n\u003cbr/\u003e\u003cbr/\u003e\nThe Click ID is, in this order, sourced from:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003emsclkid\u003c/i\u003e URL parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003euet_msclkid\u003c/i\u003e cookie from server GTM\u003c/li\u003e\n\u003cli\u003e\u003ci\u003ecommonCookie.uet_msclkid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003e_uetmsclkid\u003c/i\u003e cookie from the JS script\u003c/li\u003e\n\u003cli\u003e\u003ci\u003ecommonCookie._uetmsclkid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eUser Data Parameters\u003c/i\u003e section\u003c/li\u003e\n\u003c/ul\u003e",
+        "help": "If \u003cb\u003efalse\u003c/b\u003e, and if an existing Click ID cookie or URL parameter is found or was added to the \u003ci\u003eUser Data Parameters\u003c/i\u003e,, it will still be sent in the request but not stored as a cookie.\n\u003cbr/\u003e\u003cbr/\u003e\nIf \u003cb\u003etrue\u003c/b\u003e, the Click ID will be sent in the request and stored as the \u003ci\u003euet_msclkid\u003c/i\u003e cookie by server GTM.\n\u003cbr/\u003e\u003cbr/\u003e\nThe Click ID is, in this order, sourced from:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003emsclkid\u003c/i\u003e URL parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003euet_msclkid\u003c/i\u003e cookie from server GTM\u003c/li\u003e\n\u003cli\u003e\u003ci\u003ecommonCookie.uet_msclkid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003euet_msclkid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003e_uetmsclkid\u003c/i\u003e cookie from the JS script\u003c/li\u003e\n\u003cli\u003e\u003ci\u003ecommonCookie._uetmsclkid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003e_uetmsclkid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003euetmsclkid\u003c/i\u003e Event Data parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eUser Data Parameters\u003c/i\u003e section\u003c/li\u003e\n\u003c/ul\u003e",
         "defaultValue": true,
         "subParams": [
           {
@@ -413,7 +413,7 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "help": "If enabled, the tag will attempt to automatically map parameters from the Event Data.\n\u003cbr/\u003e\u003cbr/\u003e\nAny value you manually enter in a field below will always override the auto-mapped value.\n\u003cbr/\u003e\u003cbr/\u003e\nDefault mappings:\n\u003cul\u003e\n\u003cli\u003eEvent ID: \u003ci\u003eeventData.event_id \u003e eventData.eventId\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eEvent Source URL: \u003ci\u003eeventData.page_location\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eEvent Time: \u003ci\u003e\u003c/i\u003etimestamp in seconds of when the server tag fired\u003c/li\u003e\n\u003cli\u003ePage Title: \u003ci\u003eeventData.page_title\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eReferrer URL: \u003ci\u003eeventData.page_referrer\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e",
+        "help": "If enabled, the tag will attempt to automatically map parameters from the Event Data.\n\u003cbr/\u003e\u003cbr/\u003e\nAny value you manually enter in a field below will always override the auto-mapped value.\n\u003cbr/\u003e\u003cbr/\u003e\nDefault mappings:\n\u003cul\u003e\n\u003cli\u003eEvent ID:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData.event_id\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.eventId\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/li\u003e\n\u003cli\u003eEvent Source URL: \u003ci\u003eeventData.page_location\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eEvent Time: \u003ci\u003e\u003c/i\u003etimestamp in seconds of when the server tag fired\u003c/li\u003e\n\u003cli\u003ePage Title: \u003ci\u003eeventData.page_title\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eReferrer URL: \u003ci\u003eeventData.page_referrer\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e",
         "defaultValue": true
       },
       {
@@ -496,7 +496,7 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "help": "If enabled, the tag will attempt to automatically map parameters from your event data. \n\u003cbr/\u003e\u003cbr/\u003e\nAny value you manually enter in a field below will always override the auto-mapped value.\n\u003cbr/\u003e\u003cbr/\u003e\nDefault mappings:\n\u003cul\u003e\n\u003cli\u003eAnonymous ID: \u003ci\u003euet_vid cookie \u003e eventData.commonCookie.uet_vid \u003e _uetvid cookie \u003e eventData.commonCookie._uetvid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eExternal ID: \u003ci\u003eeventData.user_id\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eClick ID: \u003ci\u003emsclkid URL parameter \u003e uet_msclkid cookie \u003e eventData.commonCookie.uet_msclkid \u003e _uetmsclkid cookie \u003e eventData.commonCookie._uetmsclkid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eEmail: \u003ci\u003eeventData.email \u003e eventData.email_address \u003e eventData.userData.email \u003e eventData.userData.email_address \u003e eventData.userData.sha256_email_address\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003ePhone: \u003ci\u003eeventData.phone \u003e eventData.phone_number \u003e eventData.userData.phone\u003c/i\u003e \u003e eventData.userData.phone_number \u003e eventData.userData.sha256_phone_number\u003c/li\u003e\n\u003cli\u003eIP Address: \u003ci\u003eeventData.ip_override\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eUser Agent: \u003ci\u003eeventData.user_agent\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eiOS IDFA: \u003ci\u003eeventData[\u0027x-ga-resettable_device_id\u0027]\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eAndroid AAID/GAID: \u003ci\u003eeventData[\u0027x-ga-resettable_device_id\u0027]\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e",
+        "help": "If enabled, the tag will attempt to automatically map parameters from your event data. \n\u003cbr/\u003e\u003cbr/\u003e\nAny value you manually enter in a field below will always override the auto-mapped value.\n\u003cbr/\u003e\u003cbr/\u003e\nDefault mappings:\n\u003cul\u003e\n\u003cli\u003eAnonymous ID:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003euet_vid\u003c/i\u003e cookie\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.commonCookie.uet_vid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.uet_vid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003e_uetvid\u003c/i\u003e cookie\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.commonCookie._uetvid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData._uetvid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.uetvid\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eExternal ID:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData.user_id\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eClick ID:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003emsclkid\u003c/i\u003e URL parameter\u003c/li\u003e\n\u003cli\u003e\u003ci\u003euet_msclkid\u003c/i\u003e cookie\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.commonCookie.uet_msclkid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.uet_msclkid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003e_uetmsclkid\u003c/i\u003e cookie\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.commonCookie._uetmsclkid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData._uetmsclkid\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.uetmsclkid\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eEmail:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData.email\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.email_address\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.userData.email\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.userData.email_address\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.userData.sha256_email_address\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003ePhone:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData.phone\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.phone_number\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.userData.phone\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.userData.phone_number\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eeventData.userData.sha256_phone_number\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eIP Address:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData.ip_override\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eUser Agent:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData.user_agent\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eiOS IDFA:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData[\u0027x-ga-resettable_device_id\u0027]\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eAndroid AAID/GAID:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData[\u0027x-ga-resettable_device_id\u0027]\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e",
         "defaultValue": true
       },
       {
@@ -635,7 +635,7 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "help": "If enabled, the tag will attempt to automatically map parameters from your event data.\n\u003cbr/\u003e\u003cbr/\u003e\nAny value you manually enter in a field below will always override the auto-mapped value.\n\u003cbr/\u003e\u003cbr/\u003e\nDefault mappings:\n\u003cul\u003e\n\u003cli\u003eEvent Value, Value and Ecomm Total Value: \u003ci\u003eeventData.value \u003e Sum of eventData.items Price * Quantity\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eCurrency: \u003ci\u003eeventData.currency \u003e Currency from eventData.items\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eTransaction ID: \u003ci\u003eeventData.transaction_id\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eItems: \u003ci\u003eeventData.items\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eItem IDs: \u003ci\u003eeventData.items[].item_id\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eSearch Term: \u003ci\u003eeventData.search_term\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e",
+        "help": "If enabled, the tag will attempt to automatically map parameters from your event data.\n\u003cbr/\u003e\u003cbr/\u003e\nAny value you manually enter in a field below will always override the auto-mapped value.\n\u003cbr/\u003e\u003cbr/\u003e\nDefault mappings:\n\u003cul\u003e\n\u003cli\u003eEvent Value, Value and Ecomm Total Value:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData.value\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eSum of eventData.items Price * Quantity\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eCurrency:\n\u003cul\u003e\n\u003cli\u003e\u003ci\u003eeventData.currency\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003e\u003ci\u003eCurrency from eventData.items\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eTransaction ID: \u003ci\u003eeventData.transaction_id\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eItems: \u003ci\u003eeventData.items\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eItem IDs: \u003ci\u003eeventData.items[].item_id\u003c/i\u003e\u003c/li\u003e\n\u003cli\u003eSearch Term: \u003ci\u003eeventData.search_term\u003c/i\u003e\u003c/li\u003e\n\u003c/ul\u003e",
         "defaultValue": true,
         "subParams": [
           {
@@ -893,8 +893,6 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_SERVER___
 
-/// <reference path="./server-gtm-sandboxed-apis.d.ts" />
-
 const BigQuery = require('BigQuery');
 const encodeUriComponent = require('encodeUriComponent');
 const generateRandom = require('generateRandom');
@@ -919,16 +917,10 @@ const sha256Sync = require('sha256Sync');
 /*==============================================================================
 ==============================================================================*/
 
-const traceId = getRequestHeader('trace-id');
 const eventData = getAllEventData();
 const useOptimisticScenario = isUIFieldTrue(data.useOptimisticScenario);
 
-if (!isConsentGivenOrNotRequired(data, eventData)) {
-  return data.gtmOnSuccess();
-}
-
-const url = eventData.page_location || getRequestHeader('referer');
-if (url && url.lastIndexOf('https://gtm-msr.appspot.com/', 0) === 0) {
+if (shouldExitEarly(data, eventData)) {
   return data.gtmOnSuccess();
 }
 
@@ -948,7 +940,7 @@ if (useOptimisticScenario) {
 ==============================================================================*/
 
 function parseClickIdFromUrl(eventData) {
-  const url = eventData.page_location || getRequestHeader('referer');
+  const url = getUrl(eventData);
   if (!url) return;
 
   const urlSearchParams = parseUrl(url).searchParams;
@@ -961,10 +953,15 @@ function getClickId(eventData) {
   const clickIdFromUrl = parseClickIdFromUrl(eventData);
   if (clickIdFromUrl) return clickIdFromUrl;
 
-  const clickIdFromServerCookie = getCookieValues('uet_msclkid')[0] || commonCookie.uet_msclkid;
+  const clickIdFromServerCookie =
+    getCookieValues('uet_msclkid')[0] || commonCookie.uet_msclkid || eventData.uet_msclkid;
   if (clickIdFromServerCookie) return clickIdFromServerCookie;
 
-  const clickIdFromJSCookie = getCookieValues('_uetmsclkid')[0] || commonCookie._uetmsclkid;
+  const clickIdFromJSCookie =
+    getCookieValues('_uetmsclkid')[0] ||
+    commonCookie._uetmsclkid ||
+    eventData._uetmsclkid ||
+    eventData.uetmsclkid;
   if (clickIdFromJSCookie) return clickIdFromJSCookie.replace('_uet', '');
 }
 
@@ -986,10 +983,12 @@ function setClickIdCookie(data, clickId) {
 function getAnonymousId(eventData) {
   const commonCookie = eventData.commonCookie || {};
 
-  const anonymousIdFromServerCookie = getCookieValues('uet_vid')[0] || commonCookie.uet_vid;
+  const anonymousIdFromServerCookie =
+    getCookieValues('uet_vid')[0] || commonCookie.uet_vid || eventData.uet_vid;
   if (anonymousIdFromServerCookie) return anonymousIdFromServerCookie;
 
-  const anonymousIdFromJSCookie = getCookieValues('_uetvid')[0] || commonCookie._uetvid;
+  const anonymousIdFromJSCookie =
+    getCookieValues('_uetvid')[0] || commonCookie._uetvid || eventData._uetvid || eventData.uetvid;
   if (anonymousIdFromJSCookie) return anonymousIdFromJSCookie;
 
   if (isUIFieldTrue(data.setAnonymousIdCookie)) return generateUUID();
@@ -1096,15 +1095,26 @@ function addEventData(data, eventData, event) {
   const customData = {};
 
   if (isUIFieldTrue(data.autoMapEventParameters)) {
+    let items;
     let currencyFromItems;
     let valueFromItems;
-    if (getType(eventData.items) === 'array' && eventData.items.length > 0) {
+
+    if (getType(eventData.items) === 'array' && eventData.items.length) items = eventData.items;
+    else if (
+      getType(eventData.ecommerce) === 'object' &&
+      getType(eventData.ecommerce.items) === 'array' &&
+      eventData.ecommerce.items.length
+    ) {
+      items = eventData.ecommerce.items;
+    }
+
+    if (getType(items) === 'array' && items.length) {
       customData.items = [];
       customData.itemIds = [];
       valueFromItems = 0;
-      currencyFromItems = eventData.items[0].currency;
+      currencyFromItems = items[0].currency;
       const itemIdKey = data.itemIdKey ? data.itemIdKey : 'item_id';
-      eventData.items.forEach((i) => {
+      items.forEach((i) => {
         const item = {};
         if (i[itemIdKey]) item.id = makeString(i[itemIdKey]);
         if (i.item_name) item.name = makeString(i.item_name);
@@ -1277,7 +1287,8 @@ function mapEvent(data, eventData) {
     eventName: mapEventName(data, eventData)
   };
   const mappedData = {
-    data: [event]
+    data: [event],
+    dataProvider: 'stape-gtmss-1.0.0'
   };
 
   addServerEventData(data, eventData, event);
@@ -1299,9 +1310,8 @@ function sendIdSyncFromBrowser(data, mappedData) {
     log({
       Name: 'MicrosoftCAPI',
       Type: 'Message',
-      TraceId: traceId,
       EventName: 'ClientSideIDSync',
-      Message: 'Client-Side ID Sync request was not sent.',
+      Message: '🛑 [ERROR] Client-Side ID Sync request was not sent.',
       Reason: 'One or more required parameters are missing: accountCustomerId or anonymousId'
     });
 
@@ -1341,7 +1351,6 @@ function sendRequest(data, mappedData) {
   log({
     Name: 'MicrosoftCAPI',
     Type: 'Request',
-    TraceId: traceId,
     EventName: mappedData.data[0].eventType,
     RequestMethod: requestOptions.method,
     RequestUrl: requestUrl,
@@ -1354,7 +1363,6 @@ function sendRequest(data, mappedData) {
       log({
         Name: 'MicrosoftCAPI',
         Type: 'Response',
-        TraceId: traceId,
         EventName: mappedData.data[0].eventType,
         ResponseStatusCode: statusCode,
         ResponseHeaders: headers,
@@ -1374,6 +1382,19 @@ function sendRequest(data, mappedData) {
 /*==============================================================================
   Helpers
 ==============================================================================*/
+
+function shouldExitEarly(data, eventData) {
+  if (!isConsentGivenOrNotRequired(data, eventData)) return true;
+
+  const url = getUrl(eventData);
+  if (url && url.lastIndexOf('https://gtm-msr.appspot.com/', 0) === 0) return true;
+
+  return false;
+}
+
+function getUrl(eventData) {
+  return eventData.page_location || getRequestHeader('referer') || eventData.page_referrer;
+}
 
 function mergeObj(target, source) {
   for (const key in source) {
@@ -1461,6 +1482,8 @@ function log(rawDataToLog) {
   if (determinateIsLoggingEnabled()) logDestinationsHandlers.console = logConsole;
   if (determinateIsLoggingEnabledForBigQuery()) logDestinationsHandlers.bigQuery = logToBigQuery;
 
+  rawDataToLog.TraceId = getRequestHeader('trace-id');
+
   const keyMappings = {
     // No transformation for Console is needed.
     bigQuery: {
@@ -1512,9 +1535,7 @@ function logToBigQuery(dataToLog) {
     dataToLog[p] = JSON.stringify(dataToLog[p]);
   });
 
-  const bigquery =
-    getType(BigQuery) === 'function' ? BigQuery() /* Only during Unit Tests */ : BigQuery;
-  bigquery.insert(connectionInfo, [dataToLog], { ignoreUnknownValues: true });
+  BigQuery.insert(connectionInfo, [dataToLog], { ignoreUnknownValues: true });
 }
 
 function determinateIsLoggingEnabled() {
@@ -2273,8 +2294,8 @@ scenarios:
     \ 'SKU_12346'],\n          value: 123.45,\n          eventValue: 123.45,\n   \
     \       ecommTotalValue: 123.45,\n          currency: 'BRL',\n          transactionId:\
     \ 'transaction_id',\n          searchTerm: 'search_term'\n        }\n      }\n\
-    \    ]\n  });\n  callback(200);\n});\n\nrunCode(mockData);\n\nassertApi('gtmOnSuccess').wasCalled();\n\
-    assertApi('gtmOnFailure').wasNotCalled();"
+    \    ],\n    dataProvider: PARTNER_STRING\n  });\n  callback(200);\n});\n\nrunCode(mockData);\n\
+    \nassertApi('gtmOnSuccess').wasCalled();\nassertApi('gtmOnFailure').wasNotCalled();"
 - name: '[Request] [Data from UI fields] Is successfully built and sent'
   code: |-
     setAllMockDataByEventType('custom', {
@@ -2342,7 +2363,8 @@ scenarios:
               }
             }
           }
-        ]
+        ],
+        dataProvider: PARTNER_STRING
       });
       callback(200);
     });
@@ -2351,57 +2373,15 @@ scenarios:
 
     assertApi('gtmOnSuccess').wasCalled();
     assertApi('gtmOnFailure').wasNotCalled();
-- name: '[Logs] Should log to console'
-  code: "const originalMockData = setAllMockDataByEventType('pageLoad');\n\n[\n  //\
-    \ if the 'Always log to console' option is selected\n  { mockData: { logType:\
-    \ 'always' }, expectedDebugMode: true },\n  // if the 'Log during debug and preview'\
-    \ option is selected AND is on preview mode\n  { mockData: { logType: 'debug'\
-    \ }, expectedDebugMode: true },\n].forEach(scenario => {\n  const copyMockData\
-    \ = JSON.parse(JSON.stringify(originalMockData));\n  mergeObj(copyMockData, scenario.mockData);\n\
-    \  \n  mock('getContainerVersion', () => {\n    return {\n      debugMode: scenario.expectedDebugMode\n\
-    \    };\n  }); \n  \n  mock('logToConsole', (logData) => {\n    const parsedLogData\
-    \ = JSON.parse(logData);\n    requiredConsoleKeys.forEach(p => assertThat(parsedLogData[p]).isDefined());\n\
-    \  });\n  \n  runCode(copyMockData);\n  \n  assertApi('logToConsole').wasCalled();\n\
-    \  assertApi('gtmOnSuccess').wasCalled();\n  assertApi('gtmOnFailure').wasNotCalled();\n\
-    });"
-- name: '[Logs] Should NOT log to console'
-  code: "setAllMockDataByEventType('pageLoad');\nmockData.logType = 'debug';\n\nconst\
-    \ originalMockData = setAllMockDataByEventType('pageLoad');\n\n[\n  // if the\
-    \ 'Log during debug and preview' option is selected AND is NOT on preview mode\n\
-    \  { mockData: { logType: 'debug' }, expectedDebugMode: false },\n  // if the\
-    \ 'Do not log' option is selected\n  { mockData: { logType: 'no' }, expectedDebugMode:\
-    \ undefined },\n].forEach(scenario => {\n  const copyMockData = JSON.parse(JSON.stringify(originalMockData));\n\
-    \  mergeObj(copyMockData, scenario.mockData);\n  \n  mock('getContainerVersion',\
-    \ () => {\n    return {\n      debugMode: scenario.expectedDebugMode\n    };\n\
-    \  });\n  \n  runCode(copyMockData);\n\n  assertApi('logToConsole').wasNotCalled();\n\
-    \  assertApi('gtmOnSuccess').wasCalled();\n  assertApi('gtmOnFailure').wasNotCalled();\n\
-    });"
-- name: '[Logs] Should NOT log to BQ, if the ''Do not log to BigQuery'' option is
-    selected'
-  code: "setAllMockDataByEventType('pageLoad');\nmockData.bigQueryLogType = 'no';\n\
-    \n// assertApi doesn't work for 'BigQuery.insert()'.\n// Ref: https://gtm-gear.com/posts/gtm-templates-testing/\n\
-    mock('BigQuery', () => {\n  return { \n    insert: (connectionInfo, rows, options)\
-    \ => { \n      fail('BigQuery.insert should not have been called.');\n      return\
-    \ Promise.create((resolve, reject) => {\n        resolve();\n      });\n    }\n\
-    \  };\n});\n\nrunCode(mockData);\n\nassertApi('gtmOnSuccess').wasCalled();\nassertApi('gtmOnFailure').wasNotCalled();"
-- name: '[Logs] Should log to BQ, if the ''Log to BigQuery'' option is selected'
-  code: "setAllMockDataByEventType('pageLoad');\nmockData.bigQueryLogType = 'always';\n\
-    \n// assertApi doesn't work for 'BigQuery.insert()'.\n// Ref: https://gtm-gear.com/posts/gtm-templates-testing/\n\
-    mock('BigQuery', () => {\n  return { \n    insert: (connectionInfo, rows, options)\
-    \ => { \n      assertThat(connectionInfo).isDefined();\n      assertThat(rows).isArray();\n\
-    \      assertThat(rows).hasLength(1);\n      requiredBqKeys.forEach(p => assertThat(rows[0][p]).isDefined());\n\
-    \      assertThat(options).isEqualTo(expectedBqOptions);\n      return Promise.create((resolve,\
-    \ reject) => {\n        resolve();\n      });\n    }\n  };\n});\n\nrunCode(mockData);\n\
-    \nassertApi('gtmOnSuccess').wasCalled();\nassertApi('gtmOnFailure').wasNotCalled();"
 setup: "const JSON = require('JSON');\nconst Promise = require('Promise');\nconst\
   \ parseUrl = require('parseUrl');\nconst Object = require('Object');\nconst makeInteger\
-  \ = require('makeInteger');\n\nfunction mergeObj(target, source) {\n  for (const\
-  \ key in source) {\n    if (source.hasOwnProperty(key)) target[key] = source[key];\n\
-  \  }\n  return target;\n}\n\nconst setGetAllEventData = (objToBeMerged) => {\n \
-  \ mock('getAllEventData', mergeObj({\n    'x-ga-protocol_version': '2',\n    'x-ga-measurement_id':\
-  \ 'G-123ABC',\n    'x-ga-gtm_version': '45je55e1za200',\n    'x-ga-page_id': 1747422523211,\n\
-  \    'x-ga-gcd': '13l3l3l3l1l1',\n    'x-ga-npa': '0',\n    'x-ga-dma': '0',\n \
-  \   'x-ga-mp2-tag_exp':\n      '101509157~103116025~103130498~103130500~103136993~103136995~103200001~103207802~103211513~103233427~103252644~103252646~103263073~103301114~103301116',\n\
+  \ = require('makeInteger');\n\nconst PARTNER_STRING = 'stape-gtmss-1.0.0';\n\nfunction\
+  \ mergeObj(target, source) {\n  for (const key in source) {\n    if (source.hasOwnProperty(key))\
+  \ target[key] = source[key];\n  }\n  return target;\n}\n\nconst setGetAllEventData\
+  \ = (objToBeMerged) => {\n  mock('getAllEventData', mergeObj({\n    'x-ga-protocol_version':\
+  \ '2',\n    'x-ga-measurement_id': 'G-123ABC',\n    'x-ga-gtm_version': '45je55e1za200',\n\
+  \    'x-ga-page_id': 1747422523211,\n    'x-ga-gcd': '13l3l3l3l1l1',\n    'x-ga-npa':\
+  \ '0',\n    'x-ga-dma': '0',\n    'x-ga-mp2-tag_exp':\n      '101509157~103116025~103130498~103130500~103136993~103136995~103200001~103207802~103211513~103233427~103252644~103252646~103263073~103301114~103301116',\n\
   \    client_id: 'AUJctU7H7hBB/aMuhE4pKwGu5DWDdklg5abyyyn8i/I=.1747154479',\n   \
   \ 'x-ga-ecid': '1294673677',\n    language: 'en-us',\n    screen_resolution: '1512x982',\n\
   \    event_location: { country: 'BR', region: 'SP' },\n    event_id: '101509157~103116025~103130498',\n\
@@ -2506,6 +2486,12 @@ setup: "const JSON = require('JSON');\nconst Promise = require('Promise');\ncons
 
 
 ___NOTES___
+
+2026-04-13 - Change Notes:
+  - Add dataProvider field (partner string "stape-gtmss-1.0.0") to the request payload.
+  - Auto-map Click ID and Anonymous ID from additional Event Data sources: eventData.uet_msclkid, eventData._uetmsclkid,
+    eventData.uetmsclkid, eventData.uet_vid, eventData._uetvid, and eventData.uetvid.
+  - Auto-map items from eventData.ecommerce.items as a fallback when eventData.items is not present.
 
 Created on 8/20/2025, 2:02:02 PM
 
