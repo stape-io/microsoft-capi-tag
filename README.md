@@ -76,3 +76,6 @@ To enable Intellisense and enhance your template development workflow, you can f
 ## Open Source
 
 The **Microsoft UET Conversion API Tag for GTM Server-Side** is developed and maintained by the [Stape Team](https://stape.io/) under the Apache 2.0 license.
+
+### GTM Gallery Status
+🟢 [Listed](https://tagmanager.google.com/gallery/#/owners/stape-io/templates/microsoft-capi-tag)
