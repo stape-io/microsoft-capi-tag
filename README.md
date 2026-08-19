@@ -25,7 +25,7 @@ You can configure how events are sent in two ways:
 ### Main Configuration
 
 - **UET Tag ID**: Your UET Tag ID from your Microsoft Ads account.
-- **Authorization Token**: The auth token generated in Microsoft Ads or provided by your account manager.
+- **Authorization Token**: The auth token generated in Microsoft Ads or provided by your account manager. [Learn more](https://learn.microsoft.com/en-us/advertising/guides/uet-conversion-api-integration#authorization-token-and-api-endpoint).
 - **Enable Client-Side ID Sync**: Strongly recommended. This allows your internal IDs to be mapped to Microsoft IDs for better user matching and remarketing via a browser pixel. It requires your Microsoft Customer ID / Manager Account ID.
 
 ### Anonymous ID and Click ID Settings
@@ -72,6 +72,7 @@ To enable Intellisense and enhance your template development workflow, you can f
 ## Useful Resources:
 
 - [Step-by-step guide on how to configure Microsoft UET Conversion API Tag](https://stape.io/blog/guide-microsoft-conversion-api-integration)
+- [What is Microsoft UET Conversions API?](https://learn.microsoft.com/en-us/advertising/guides/uet-conversion-api-integration)
 
 ## Open Source
 

@@ -118,7 +118,7 @@ ___TEMPLATE_PARAMETERS___
         "name": "authToken",
         "displayName": "Authorization Token",
         "simpleValueType": true,
-        "help": "The Authorization Token associated with the account.\n\u003cbr/\u003e\nContact your Account Manager to get it, or generate it in Microsoft Ads.",
+        "help": "The Authorization Token associated with the account.\n\u003cbr/\u003e\nContact your Account Manager to obtain it, or generate it in Microsoft Ads. \u003ca href\u003d\"https://learn.microsoft.com/en-us/advertising/guides/uet-conversion-api-integration#authorization-token-and-api-endpoint\"\u003eLearn more\u003c/a\u003e.",
         "valueValidators": [
           {
             "type": "NON_EMPTY"
