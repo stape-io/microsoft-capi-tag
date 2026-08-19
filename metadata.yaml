@@ -1,6 +1,8 @@
 homepage: 'https://stape.io/'
 documentation: 'https://github.com/stape-io/microsoft-capi-tag'
 versions:
+  - sha: 1572b96954463f8e15412eec7f2dc0642cb899e5
+    changeNotes: Add MS documentation reference about Authorization token generation.
   - sha: 9f62f2df910f6079961bbb8d9fd0268badf97d76
     changeNotes: Logging removal.
   - sha: 2b8e7aef89216b940254abe820ba9c8a7a6b104e
