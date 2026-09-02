@@ -394,7 +394,7 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "help": "If \u003ci\u003etrue\u003c/i\u003e, Ad Storage Consent is considered granted. If \u003ci\u003efalse\u003c/i\u003e, Ad Storage Consent is considered denied.\n\u003cbr/\u003e\u003cbr/\u003e\nEvents with Ad Storage Consent \u003cb\u003edenied\u003c/b\u003e will not be used for any ad purposes (including conversion attribution and retargeting).\n\u003cbr/\u003e\u003cbr/\u003e\nIf Ad Storage Consent is not set, it will be considered as granted.",
+        "help": "If \u003ci\u003etrue\u003c/i\u003e, Ad Storage Consent is considered granted. If \u003ci\u003efalse\u003c/i\u003e, Ad Storage Consent is considered denied.\n\u003cbr/\u003e\u003cbr/\u003e\nEvents with Ad Storage Consent \u003cb\u003edenied\u003c/b\u003e will not be used for any ad purposes (including conversion attribution and retargeting).\n\u003cbr/\u003e\u003cbr/\u003e\nIf Ad Storage Consent is not set, it will be considered as granted by Conversion API automatically (the corresponding parameter won\u0027t be present in the event payload).",
         "notSetText": "(not set)"
       },
       {
@@ -2218,6 +2218,12 @@ setup: "const JSON = require('JSON');\nconst Promise = require('Promise');\ncons
 
 
 ___NOTES___
+
+2026-09-02 Change Notes:
+ - Add explanation about Ad Storage Consent field.
+
+2026-08-19 Change Notes:
+ - Add MS documentation reference about Authorization token generation.
 
 2026-05-25 Change Notes:
  - Logging removal.
