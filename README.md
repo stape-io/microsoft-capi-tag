@@ -17,7 +17,7 @@ The tag supports standard `Page Load` events as well as `Custom` events, and can
 
 You can configure how events are sent in two ways:
 
-- **Standard**: Manually select the event type (`Page Load` or `Custom`) and specify the event name for custom conversion goals.
+- **Standard**: Manually select the event type (`Page Load` or `Custom`) and specify the event name for custom conversion goals. If `Event Type` is `Custom`, passing `pageLoad` as the `Event Name` (e.g. via a variable) sends the event as a `Page Load` event instead.
 - **Inherit from client**: If your server container receives GA4 events, the tag will automatically map common GA4 event names to their Microsoft UET equivalents (e.g., `page_view` → `pageLoad`, `purchase` -> `purchase`, `view_item` -> `product` etc.). Note that this auto-mapping is limited.
 
 ## Parameters
