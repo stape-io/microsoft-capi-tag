@@ -324,7 +324,6 @@ function hashDataIfNeeded(event) {
 function mapEventType(data, eventData) {
   if (data.eventTypeSetupMethod === 'inherit') {
     const eventName = eventData.event_name;
-
     const gaToEventType = {
       page_view: 'pageLoad',
       'gtm.dom': 'pageLoad',
@@ -335,20 +334,17 @@ function mapEventType(data, eventData) {
       purchase: 'custom'
     };
 
-    if (gaToEventType[eventName]) {
-      return gaToEventType[eventName];
-    }
-
-    return 'custom';
+    return gaToEventType[eventName] || 'custom';
   } else if (data.eventTypeSetupMethod === 'standard') {
-    return data.eventType;
+    return data.eventType === 'custom' && data.customEventEventName === 'pageLoad'
+      ? 'pageLoad'
+      : data.eventType;
   }
 }
 
 function mapEventName(data, eventData) {
   if (data.eventTypeSetupMethod === 'inherit') {
     const eventName = eventData.event_name;
-
     const gaToEventName = {
       search: 'search',
       view_search_results: 'view_search_results',
@@ -357,11 +353,11 @@ function mapEventName(data, eventData) {
       purchase: 'purchase'
     };
 
-    if (gaToEventName[eventName]) {
-      return gaToEventName[eventName];
-    }
+    return gaToEventName[eventName];
   } else if (data.eventTypeSetupMethod === 'standard') {
-    return data.customEventEventName;
+    return data.eventType === 'custom' && data.customEventEventName === 'pageLoad'
+      ? undefined
+      : data.customEventEventName;
   }
 }
 

@@ -82,7 +82,7 @@ ___TEMPLATE_PARAMETERS___
                     "type": "EQUALS"
                   }
                 ],
-                "help": "Optional.\u003cbr/\u003e\u003cbr/\u003eIf set, it will be used as the Event Action for custom conversion goals."
+                "help": "Optional.\n\u003cbr/\u003e\u003cbr/\u003e\nIf set, it will be used as the Event Action for custom conversion goals.\n\u003cbr/\u003e\u003cbr/\u003e\nPass \u003ci\u003epageLoad\u003c/i\u003e to send it as as Page Load event."
               }
             ],
             "help": ""
@@ -1124,7 +1124,6 @@ function hashDataIfNeeded(event) {
 function mapEventType(data, eventData) {
   if (data.eventTypeSetupMethod === 'inherit') {
     const eventName = eventData.event_name;
-
     const gaToEventType = {
       page_view: 'pageLoad',
       'gtm.dom': 'pageLoad',
@@ -1135,20 +1134,17 @@ function mapEventType(data, eventData) {
       purchase: 'custom'
     };
 
-    if (gaToEventType[eventName]) {
-      return gaToEventType[eventName];
-    }
-
-    return 'custom';
+    return gaToEventType[eventName] || 'custom';
   } else if (data.eventTypeSetupMethod === 'standard') {
-    return data.eventType;
+    return data.eventType === 'custom' && data.customEventEventName === 'pageLoad'
+      ? 'pageLoad'
+      : data.eventType;
   }
 }
 
 function mapEventName(data, eventData) {
   if (data.eventTypeSetupMethod === 'inherit') {
     const eventName = eventData.event_name;
-
     const gaToEventName = {
       search: 'search',
       view_search_results: 'view_search_results',
@@ -1157,11 +1153,11 @@ function mapEventName(data, eventData) {
       purchase: 'purchase'
     };
 
-    if (gaToEventName[eventName]) {
-      return gaToEventName[eventName];
-    }
+    return gaToEventName[eventName];
   } else if (data.eventTypeSetupMethod === 'standard') {
-    return data.customEventEventName;
+    return data.eventType === 'custom' && data.customEventEventName === 'pageLoad'
+      ? undefined
+      : data.customEventEventName;
   }
 }
 
@@ -2105,6 +2101,33 @@ scenarios:
 
     assertApi('gtmOnSuccess').wasCalled();
     assertApi('gtmOnFailure').wasNotCalled();
+- name: '[Event Type] Custom event name pageLoad overrides event type to Page Load'
+  code: |-
+    const originalMockData = setAllMockDataByEventType('custom', {});
+
+    [
+      { customEventEventName: 'pageLoad', expectedEventType: 'pageLoad', expectedEventName: undefined },
+      { customEventEventName: 'promotion', expectedEventType: 'custom', expectedEventName: 'promotion' }
+    ].forEach(scenario => {
+      const copyMockData = JSON.parse(JSON.stringify(originalMockData));
+      copyMockData.customEventEventName = scenario.customEventEventName;
+
+      mock('sendHttpRequest', (requestUrl, callback, requestOptions, requestBody) => {
+        const parsedBody = JSON.parse(requestBody);
+        assertThat(parsedBody.data[0].eventType).isEqualTo(scenario.expectedEventType);
+        if (scenario.expectedEventName === undefined) {
+          assertThat(parsedBody.data[0].eventName).isUndefined();
+        } else {
+          assertThat(parsedBody.data[0].eventName).isEqualTo(scenario.expectedEventName);
+        }
+        callback(200);
+      });
+
+      runCode(copyMockData);
+
+      assertApi('gtmOnSuccess').wasCalled();
+      assertApi('gtmOnFailure').wasNotCalled();
+    });
 setup: "const JSON = require('JSON');\nconst Promise = require('Promise');\nconst\
   \ parseUrl = require('parseUrl');\nconst Object = require('Object');\nconst makeInteger\
   \ = require('makeInteger');\n\nconst PARTNER_STRING = 'stape-gtmss-1.0.0';\n\nfunction\
@@ -2218,6 +2241,9 @@ setup: "const JSON = require('JSON');\nconst Promise = require('Promise');\ncons
 
 
 ___NOTES___
+
+2026-09-28 - Change Notes:
+  - Add support for passing "pageLoad" as the Event Name in Standard/Custom event setup, so a dynamic value (e.g. a GTM variable) can trigger a Page Load event instead of a Custom event.
 
 2026-09-02 Change Notes:
  - Add explanation about Ad Storage Consent field.
