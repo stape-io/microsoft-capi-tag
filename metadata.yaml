@@ -1,6 +1,8 @@
 homepage: 'https://stape.io/'
 documentation: 'https://github.com/stape-io/microsoft-capi-tag'
 versions:
+  - sha: 55d41ae4da742f8ba025dbd782e4d7802402fafb
+    changeNotes: Use only the ID part of the Anonymous ID cookie (split at '|', strip dashes).
   - sha: 850318bbb0d08b9eff4b9ce2a33dc19cfb27957a
     changeNotes: Support pageLoad as a dynamic custom Event Name override.
   - sha: 066372027487c6ecfc36040280082b46953a8842
