@@ -886,15 +886,26 @@ function setClickIdCookie(data, clickId) {
 function getAnonymousId(eventData) {
   const commonCookie = eventData.commonCookie || {};
 
-  const anonymousIdFromServerCookie =
-    getCookieValues('uet_vid')[0] || commonCookie.uet_vid || eventData.uet_vid;
+  const anonymousIdFromServerCookie = parseAnonymousIdCookieValue(
+    getCookieValues('uet_vid')[0] || commonCookie.uet_vid || eventData.uet_vid
+  );
   if (anonymousIdFromServerCookie) return anonymousIdFromServerCookie;
 
-  const anonymousIdFromJSCookie =
-    getCookieValues('_uetvid')[0] || commonCookie._uetvid || eventData._uetvid || eventData.uetvid;
+  const anonymousIdFromJSCookie = parseAnonymousIdCookieValue(
+    getCookieValues('_uetvid')[0] || commonCookie._uetvid || eventData._uetvid || eventData.uetvid
+  );
   if (anonymousIdFromJSCookie) return anonymousIdFromJSCookie;
 
   if (isUIFieldTrue(data.setAnonymousIdCookie)) return generateUUID();
+}
+
+function parseAnonymousIdCookieValue(cookieValue) {
+  // The UET _uetvid cookie may hold extra data after a pipe: "<anonymousId>|<data>".
+  // UET also strips dashes from the ID before sending it (legacy dashed UUID format).
+  if (!cookieValue) return;
+  const anonymousId = makeString(cookieValue).split('|')[0].split('-').join('');
+  if (!isValidValue(anonymousId)) return;
+  return anonymousId;
 }
 
 function setAnonymousIdCookie(data, anonymousId) {
@@ -1294,7 +1305,8 @@ function isUIFieldFalse(field) {
 
 function isValidValue(value) {
   const valueType = getType(value);
-  return valueType !== 'null' && valueType !== 'undefined' && value !== '' && value === value;
+  if (valueType === 'null' || valueType === 'undefined' || value !== value) return false;
+  return value !== '' && value !== 'undefined' && value !== 'null';
 }
 
 function enc(data) {
@@ -1776,7 +1788,14 @@ scenarios:
     \ expectedValue: 'serverCookieValue' },\n  { serverCookieValue: 'serverCookieValue',\
     \ jsCookieValue: '561f11b5eb0d1674e37c79103d290385', expectedValue: 'serverCookieValue'\
     \ },\n  { serverCookieValue: undefined, jsCookieValue: '561f11b5eb0d1674e37c79103d290385',\
-    \ expectedValue: '561f11b5eb0d1674e37c79103d290385' }\n].forEach(scenario => {\n\
+    \ expectedValue: '561f11b5eb0d1674e37c79103d290385' },\n  { serverCookieValue: undefined,\
+    \ jsCookieValue: '561f11b5eb0d1674e37c79103d290385|someExtraData', expectedValue:\
+    \ '561f11b5eb0d1674e37c79103d290385' },\n  { serverCookieValue: 'serverCookieValue|someExtraData',\
+    \ jsCookieValue: '561f11b5eb0d1674e37c79103d290385', expectedValue: 'serverCookieValue'\
+    \ },\n  { serverCookieValue: '|someExtraData', jsCookieValue: '561f11b5eb0d1674e37c79103d290385|someExtraData',\
+    \ expectedValue: '561f11b5eb0d1674e37c79103d290385' },\n  { serverCookieValue: undefined,\
+    \ jsCookieValue: '561f11b5-eb0d-1674-e37c-79103d290385|someExtraData', expectedValue:\
+    \ '561f11b5eb0d1674e37c79103d290385' }\n].forEach(scenario => {\n\
     \  mock('getCookieValues', (cookieName) => {\n    if (cookieName === anonymousIdCookieNames.server)\
     \ return [scenario.serverCookieValue];\n    else if (cookieName === anonymousIdCookieNames.js)\
     \ return [scenario.jsCookieValue];\n    return [];\n  });\n  \n  mock('sendHttpRequest',\
@@ -2241,6 +2260,10 @@ setup: "const JSON = require('JSON');\nconst Promise = require('Promise');\ncons
 
 
 ___NOTES___
+
+2026-11-11 - Change Notes:
+  - Read only the ID part of the Anonymous ID cookie values (uet_vid, _uetvid and their Event Data counterparts): drop any extra data after a "|" and strip dashes, matching how the UET JS script builds the vid it sends, so a value like "<id>|<data>" is no longer sent as-is or stored in the uet_vid cookie.
+  - Treat the strings "undefined" and "null" as missing values in isValidValue, so they are skipped for the Anonymous ID, item price and event value instead of being used.
 
 2026-09-28 - Change Notes:
   - Add support for passing "pageLoad" as the Event Name in Standard/Custom event setup, so a dynamic value (e.g. a GTM variable) can trigger a Page Load event instead of a Custom event.

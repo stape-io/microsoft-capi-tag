@@ -86,15 +86,26 @@ function setClickIdCookie(data, clickId) {
 function getAnonymousId(eventData) {
   const commonCookie = eventData.commonCookie || {};
 
-  const anonymousIdFromServerCookie =
-    getCookieValues('uet_vid')[0] || commonCookie.uet_vid || eventData.uet_vid;
+  const anonymousIdFromServerCookie = parseAnonymousIdCookieValue(
+    getCookieValues('uet_vid')[0] || commonCookie.uet_vid || eventData.uet_vid
+  );
   if (anonymousIdFromServerCookie) return anonymousIdFromServerCookie;
 
-  const anonymousIdFromJSCookie =
-    getCookieValues('_uetvid')[0] || commonCookie._uetvid || eventData._uetvid || eventData.uetvid;
+  const anonymousIdFromJSCookie = parseAnonymousIdCookieValue(
+    getCookieValues('_uetvid')[0] || commonCookie._uetvid || eventData._uetvid || eventData.uetvid
+  );
   if (anonymousIdFromJSCookie) return anonymousIdFromJSCookie;
 
   if (isUIFieldTrue(data.setAnonymousIdCookie)) return generateUUID();
+}
+
+function parseAnonymousIdCookieValue(cookieValue) {
+  // The UET _uetvid cookie may hold extra data after a pipe: "<anonymousId>|<data>".
+  // UET also strips dashes from the ID before sending it (legacy dashed UUID format).
+  if (!cookieValue) return;
+  const anonymousId = makeString(cookieValue).split('|')[0].split('-').join('');
+  if (!isValidValue(anonymousId)) return;
+  return anonymousId;
 }
 
 function setAnonymousIdCookie(data, anonymousId) {
@@ -494,7 +505,8 @@ function isUIFieldFalse(field) {
 
 function isValidValue(value) {
   const valueType = getType(value);
-  return valueType !== 'null' && valueType !== 'undefined' && value !== '' && value === value;
+  if (valueType === 'null' || valueType === 'undefined' || value !== value) return false;
+  return value !== '' && value !== 'undefined' && value !== 'null';
 }
 
 function enc(data) {
