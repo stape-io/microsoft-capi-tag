@@ -139,8 +139,8 @@ function addServerEventData(data, eventData, event) {
     data.serverEventDataList.forEach((d) => (event[d.name] = d.value));
   }
 
-  if (isUIFieldFalse(data.consent)) event.adStorageConsent = 'D';
-  else if (isUIFieldTrue(data.consent)) event.adStorageConsent = 'G';
+  const adStorageConsent = getAdStorageConsent(data.consent);
+  if (adStorageConsent) event.adStorageConsent = adStorageConsent;
 
   return event;
 }
@@ -495,12 +495,21 @@ function mergeObj(target, source) {
   return target;
 }
 
-function isUIFieldTrue(field) {
-  return [true, 'true'].indexOf(field) !== -1;
+function getAdStorageConsent(consent) {
+  switch (makeString(consent).toUpperCase()) {
+    case 'TRUE':
+    case 'GRANTED':
+      return 'G';
+    case 'FALSE':
+    case 'DENIED':
+      return 'D';
+    default:
+      return;
+  }
 }
 
-function isUIFieldFalse(field) {
-  return [false, 'false'].indexOf(field) !== -1;
+function isUIFieldTrue(field) {
+  return [true, 'true'].indexOf(field) !== -1;
 }
 
 function isValidValue(value) {
