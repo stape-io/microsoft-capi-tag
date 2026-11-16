@@ -394,7 +394,7 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "help": "If \u003ci\u003etrue\u003c/i\u003e, Ad Storage Consent is considered granted. If \u003ci\u003efalse\u003c/i\u003e, Ad Storage Consent is considered denied.\n\u003cbr/\u003e\u003cbr/\u003e\nEvents with Ad Storage Consent \u003cb\u003edenied\u003c/b\u003e will not be used for any ad purposes (including conversion attribution and retargeting).\n\u003cbr/\u003e\u003cbr/\u003e\nIf Ad Storage Consent is not set, it will be considered as granted by Conversion API automatically (the corresponding parameter won\u0027t be present in the event payload).",
+        "help": "If \u003ci\u003etrue\u003c/i\u003e or \u003ci\u003egranted\u003c/i\u003e, Ad Storage Consent is considered granted. If \u003ci\u003efalse\u003c/i\u003e or \u003ci\u003edenied\u003c/i\u003e, Ad Storage Consent is considered denied. Values are case-insensitive, so a variable returning Google Consent Mode values can be used directly.\n\u003cbr/\u003e\u003cbr/\u003e\nEvents with Ad Storage Consent \u003cb\u003edenied\u003c/b\u003e will not be used for any ad purposes (including conversion attribution and retargeting).\n\u003cbr/\u003e\u003cbr/\u003e\nIf Ad Storage Consent is not set, it will be considered as granted by Conversion API automatically (the corresponding parameter won\u0027t be present in the event payload).",
         "notSetText": "(not set)"
       },
       {
@@ -939,8 +939,8 @@ function addServerEventData(data, eventData, event) {
     data.serverEventDataList.forEach((d) => (event[d.name] = d.value));
   }
 
-  if (isUIFieldFalse(data.consent)) event.adStorageConsent = 'D';
-  else if (isUIFieldTrue(data.consent)) event.adStorageConsent = 'G';
+  const adStorageConsent = getAdStorageConsent(data.consent);
+  if (adStorageConsent) event.adStorageConsent = adStorageConsent;
 
   return event;
 }
@@ -1295,12 +1295,21 @@ function mergeObj(target, source) {
   return target;
 }
 
-function isUIFieldTrue(field) {
-  return [true, 'true'].indexOf(field) !== -1;
+function getAdStorageConsent(consent) {
+  switch (makeString(consent).toUpperCase()) {
+    case 'TRUE':
+    case 'GRANTED':
+      return 'G';
+    case 'FALSE':
+    case 'DENIED':
+      return 'D';
+    default:
+      return;
+  }
 }
 
-function isUIFieldFalse(field) {
-  return [false, 'false'].indexOf(field) !== -1;
+function isUIFieldTrue(field) {
+  return [true, 'true'].indexOf(field) !== -1;
 }
 
 function isValidValue(value) {
@@ -2147,6 +2156,41 @@ scenarios:
       assertApi('gtmOnSuccess').wasCalled();
       assertApi('gtmOnFailure').wasNotCalled();
     });
+- name: '[Ad Storage Consent] Accepts true, false, granted and denied values (case-insensitive)'
+  code: |-
+    const originalMockData = setAllMockDataByEventType('pageLoad', {});
+
+    [
+      { consent: true, expected: 'G' },
+      { consent: 'true', expected: 'G' },
+      { consent: 'granted', expected: 'G' },
+      { consent: 'GRANTED', expected: 'G' },
+      { consent: false, expected: 'D' },
+      { consent: 'false', expected: 'D' },
+      { consent: 'denied', expected: 'D' },
+      { consent: 'Denied', expected: 'D' },
+      { consent: undefined, expected: undefined },
+      { consent: '', expected: undefined },
+      { consent: 'unknown', expected: undefined }
+    ].forEach(scenario => {
+      const copyMockData = JSON.parse(JSON.stringify(originalMockData));
+      copyMockData.consent = scenario.consent;
+
+      mock('sendHttpRequest', (requestUrl, callback, requestOptions, requestBody) => {
+        const parsedBody = JSON.parse(requestBody);
+        if (scenario.expected === undefined) {
+          assertThat(parsedBody.data[0].adStorageConsent).isUndefined();
+        } else {
+          assertThat(parsedBody.data[0].adStorageConsent).isEqualTo(scenario.expected);
+        }
+        callback(200);
+      });
+
+      runCode(copyMockData);
+
+      assertApi('gtmOnSuccess').wasCalled();
+      assertApi('gtmOnFailure').wasNotCalled();
+    });
 setup: "const JSON = require('JSON');\nconst Promise = require('Promise');\nconst\
   \ parseUrl = require('parseUrl');\nconst Object = require('Object');\nconst makeInteger\
   \ = require('makeInteger');\n\nconst PARTNER_STRING = 'stape-gtmss-1.0.0';\n\nfunction\
@@ -2260,6 +2304,10 @@ setup: "const JSON = require('JSON');\nconst Promise = require('Promise');\ncons
 
 
 ___NOTES___
+
+2026-11-16 - Change Notes:
+  - Accept "granted" and "denied" (case-insensitive) in the Ad Storage Consent field, besides true/false, so a variable returning Google Consent Mode values can be used directly. Unknown values still leave the parameter out of the payload.
+  - Update the Ad Storage Consent field help text to list the accepted values.
 
 2026-11-11 - Change Notes:
   - Read only the ID part of the Anonymous ID cookie values (uet_vid, _uetvid and their Event Data counterparts): drop any extra data after a "|" and strip dashes, matching how the UET JS script builds the vid it sends, so a value like "<id>|<data>" is no longer sent as-is or stored in the uet_vid cookie.
