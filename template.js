@@ -51,7 +51,7 @@ function parseClickIdFromUrl(eventData) {
 }
 
 function getClickId(eventData) {
-  const commonCookie = eventData.commonCookie || {};
+  const commonCookie = eventData.common_cookie || {};
 
   const clickIdFromUrl = parseClickIdFromUrl(eventData);
   if (clickIdFromUrl) return clickIdFromUrl;
@@ -84,7 +84,7 @@ function setClickIdCookie(data, clickId) {
 }
 
 function getAnonymousId(eventData) {
-  const commonCookie = eventData.commonCookie || {};
+  const commonCookie = eventData.common_cookie || {};
 
   const anonymousIdFromServerCookie = parseAnonymousIdCookieValue(
     getCookieValues('uet_vid')[0] || commonCookie.uet_vid || eventData.uet_vid

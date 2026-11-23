@@ -1,6 +1,8 @@
 homepage: 'https://stape.io/'
 documentation: 'https://github.com/stape-io/microsoft-capi-tag'
 versions:
+  - sha: dd82ce0d9025a862173d531252b98ff3d88593c5
+    changeNotes: Read common cookie from eventData.common_cookie.
   - sha: 55f679acaace78e4b3b52dbde127f1ae1d9adb9f
     changeNotes: Accept granted/denied values in Ad Storage Consent field.
   - sha: 55d41ae4da742f8ba025dbd782e4d7802402fafb
